@@ -127,6 +127,8 @@ reborn/
 │   └── main.js         # All logic, split into commented sections
 ├── docs/
 │   └── screenshots/    # Images used in this README
+├── copy-web.js         # Copies the web files to www/ for Capacitor
+├── .gitignore
 └── README.md
 ```
 
@@ -233,22 +235,38 @@ setupPicker("characterPicker", "character", "characterNext");
 
 ## Building the Mobile App
 
-The project is designed to be wrapped with Capacitor.
+The project is wrapped with Capacitor. Because Capacitor should only receive the web files, `copy-web.js` copies `index.html`, `css/`, `js/` and `images/` into a `www/` folder first.
+
+**Requirements:** Node.js 18 or newer, and Android Studio.
+
+**One-time setup**
 
 ```bash
 npm init -y
 npm install @capacitor/core @capacitor/cli @capacitor/android
-npx cap init Reborn com.blackfox.reborn --web-dir .
+npx cap init Reborn com.blackfox.reborn --web-dir www
+node copy-web.js
 npx cap add android
-npx cap sync
-npx cap open android      # opens Android Studio to build the APK
 ```
 
-Notes:
+Then add this line inside `"scripts"` in `package.json`:
 
-- Set the app orientation to landscape in `AndroidManifest.xml` (`android:screenOrientation="sensorLandscape"`)
-- Update the app id (`com.blackfox.reborn`) to your own before publishing
-- Run `npx cap sync` after every change to the web files
+```json
+"sync": "node copy-web.js && npx cap sync"
+```
+
+**Every time you change the web files**
+
+```bash
+npm run sync
+npx cap open android      # opens Android Studio to run or build the APK
+```
+
+**Notes**
+
+- Lock landscape in `android/app/src/main/AndroidManifest.xml` by adding `android:screenOrientation="sensorLandscape"` to the `<activity>` tag
+- Change the app id (`com.blackfox.reborn`) to your own before publishing
+- Fonts load from Google Fonts, so the app needs internet for the Orbitron font unless you bundle it
 
 ---
 
