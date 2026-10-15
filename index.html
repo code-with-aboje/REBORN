@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>REBORN</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 0. TAP TO START -->
+<div class="screen show" id="start"><p>TAP TO START</p></div>
+
+<!-- 1. BLACKFOX LOGO -->
+<div class="screen" id="logo">
+  <svg id="fox" viewBox="600 660 730 720" xmlns="http://www.w3.org/2000/svg">
+    <polygon class="t orange" pathLength="1" style="--d:0s"
+      points="634,685 920,898 965,1072 1010,898 1296,685 1250,950 1302,1095 1010,1282 965,1358 920,1282 628,1095 680,955"/>
+    <polygon class="t black" pathLength="1" style="--d:.6s" points="658,730 800,900 727,992 700,940"/>
+    <polygon class="t black" pathLength="1" style="--d:.6s" points="1272,730 1130,900 1203,992 1230,940"/>
+    <polygon class="t black" pathLength="1" style="--d:.8s" points="727,992 915,1070 950,1268 920,1302 880,1215 830,1130"/>
+    <polygon class="t black" pathLength="1" style="--d:.8s" points="1203,992 1015,1070 980,1268 1010,1302 1050,1215 1100,1130"/>
+    <polygon class="t black" pathLength="1" style="--d:1s"  points="950,1268 980,1268 1010,1302 965,1285 920,1302"/>
+    <polygon class="t gold"  pathLength="1" style="--d:1.1s" points="634,688 728,862 682,955"/>
+    <polygon class="t gold"  pathLength="1" style="--d:1.1s" points="1296,688 1202,862 1248,955"/>
+    <polygon class="t gold"  pathLength="1" style="--d:1.2s" points="797,1068 868,1095 886,1135 818,1108"/>
+    <polygon class="t gold"  pathLength="1" style="--d:1.2s" points="1133,1068 1062,1095 1044,1135 1112,1108"/>
+  </svg>
+  <div id="brand">BLACKFOX</div>
+</div>
+
+<!-- 2. REBORN TITLE -->
+<div class="screen" id="title"><h1>REBORN</h1></div>
+
+<!-- 3. SIGN UP / LOG IN (5 steps slide left to right) -->
+<div class="screen" id="auth">
+  <div id="authBox">
+    <div id="track">
+
+      <!-- STEP 1: ACCOUNT -->
+      <div class="step">
+        <h2 id="authTitle">CREATE ACCOUNT</h2>
+        <form id="accountForm">
+          <input id="username" placeholder="Username" required>
+          <input id="email" type="email" placeholder="Email" required>
+          <input id="password" type="password" placeholder="Password" minlength="6" required>
+          <button type="submit" id="accountBtn" class="main-btn">NEXT</button>
+        </form>
+      </div>
+
+      <!-- SELECT CHARACTER -->
+      <div class="step">
+        <h2>SELECT CHARACTER</h2>
+        <div class="picker" id="characterPicker">
+          <button class="arrow arrow-left" aria-label="previous"></button>
+          <div class="cards">
+            <div class="card"><div class="card-img"></div><div class="card-name">KAEL</div></div>
+            <div class="card"><div class="card-img"></div><div class="card-name">MIRA</div></div>
+            <div class="card"><div class="card-img"></div><div class="card-name">DAX</div></div>
+            <div class="card"><div class="card-img"></div><div class="card-name">NOVA</div></div>
+            <div class="card"><div class="card-img"></div><div class="card-name">RYN</div></div>
+          </div>
+          <button class="arrow arrow-right" aria-label="next"></button>
+        </div>
+        <button class="main-btn" id="characterNext" disabled>NEXT</button>
+        <button class="back-btn">BACK</button>
+      </div>
+
+      <!-- SELECT OCCUPATION -->
+      <div class="step">
+        <h2>SELECT OCCUPATION</h2>
+        <div class="picker" id="occupationPicker">
+          <button class="arrow arrow-left" aria-label="previous"></button>
+          <div class="cards">
+            <div class="card"><div class="card-img"></div><div class="card-name">HUNTER</div></div>
+            <div class="card"><div class="card-img"></div><div class="card-name">BLACKSMITH</div></div>
+            <div class="card"><div class="card-img"></div><div class="card-name">FARMER</div></div>
+            <div class="card"><div class="card-img"></div><div class="card-name">TRADER</div></div>
+            <div class="card"><div class="card-img"></div><div class="card-name">HEALER</div></div>
+          </div>
+          <button class="arrow arrow-right" aria-label="next"></button>
+        </div>
+        <button class="main-btn" id="occupationNext" disabled>NEXT</button>
+        <button class="back-btn">BACK</button>
+      </div>
+
+      <!-- SELECT LOCATION -->
+      <div class="step">
+        <h2>SELECT LOCATION</h2>
+        <div class="picker" id="locationPicker">
+          <button class="arrow arrow-left" aria-label="previous"></button>
+          <div class="cards">
+            <div class="card"><div class="card-img"></div><div class="card-name">RIVER VILLAGE</div></div>
+            <div class="card"><div class="card-img"></div><div class="card-name">CAPITAL CITY</div></div>
+            <div class="card"><div class="card-img"></div><div class="card-name">FRONTIER CAMP</div></div>
+            <div class="card"><div class="card-img"></div><div class="card-name">MOUNTAIN PASS</div></div>
+            <div class="card"><div class="card-img"></div><div class="card-name">PORT TOWN</div></div>
+          </div>
+          <button class="arrow arrow-right" aria-label="next"></button>
+        </div>
+        <button class="main-btn" id="locationNext" disabled>NEXT</button>
+        <button class="back-btn">BACK</button>
+      </div>
+
+      <!-- STEP 5: CONFIRM -->
+      <div class="step">
+        <h2>CONFIRM</h2>
+        <div id="summary">
+          NAME: <span id="sumName"></span><br>
+          CHARACTER: <span id="sumCharacter"></span><br>
+          OCCUPATION: <span id="sumOccupation"></span><br>
+          LOCATION: <span id="sumLocation"></span>
+        </div>
+        <button class="main-btn" id="beginBtn">BEGIN</button>
+        <button class="back-btn">BACK</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="dots">
+    <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+  </div>
+  <div id="switch">Already have an account? <span>Log in</span></div>
+  <div id="msg"></div>
+</div>
+
+<!-- 4. THE GAME -->
+<div class="screen" id="game">
+  <p>GAME SCREEN</p>
+  <p>Your three.js world goes here</p>
+  <button id="logout">LOG OUT</button>
+</div>
+
+<button id="skip">SKIP</button>
+<div id="rotate">ROTATE YOUR PHONE<br>TO PLAY REBORN</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+:root {
+  --bg: #07060c;
+  --orange: #ff6a00;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: #fff;
+  font-family: 'Orbitron', 'Arial Black', Impact, sans-serif;
+  overflow: hidden;
+}
+
+/* ---------- stages (each screen of the intro) ---------- */
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+.screen.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------- 0. tap to start ---------- */
+#start {
+  cursor: pointer;
+}
+
+#start p {
+  letter-spacing: .4em;
+  font-size: clamp(14px, 2.4vw, 22px);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .25;
+  }
+}
+
+/* ---------- 1. BlackFox logo ---------- */
+#fox {
+  height: 52vh;
+  width: auto;
+  overflow: visible;
+}
+
+.t {
+  fill-opacity: 0;
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.orange {
+  fill: var(--orange);
+  stroke: #ff7a1a;
+}
+
+.black {
+  fill: var(--bg);
+  stroke: #ff7a1a;
+}
+
+.gold {
+  fill: #ffb43c;
+  stroke: #ffc864;
+}
+
+.run .t {
+  animation: draw 1.5s ease-in-out var(--d, 0s) forwards, fill 1s ease 2.8s forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fill {
+  to {
+    fill-opacity: 1;
+    stroke-opacity: 0;
+  }
+}
+
+.run #fox {
+  animation: glow 5s ease forwards;
+}
+
+@keyframes glow {
+  50% {
+    filter: drop-shadow(0 0 10px var(--orange));
+  }
+}
+
+#brand {
+  margin-top: 3vh;
+  font-size: clamp(22px, 5vw, 46px);
+  letter-spacing: .25em;
+  font-weight: 900;
+  opacity: 0;
+}
+
+.run #brand {
+  animation: fadein 1.2s ease 3s forwards;
+}
+
+@keyframes fadein {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- 2. REBORN title ---------- */
+#title h1 {
+  margin: 0;
+  font-size: clamp(40px, 11vw, 120px);
+  letter-spacing: .18em;
+  font-weight: 900;
+  padding-left: .18em;
+  background: linear-gradient(180deg, #ffd9a0, var(--orange) 60%, #b33c00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 18px rgba(255,106,0,.45));
+}
+
+#title {
+  transition-duration: 1.5s;
+}
+
+/* ---------- 3. sign up (5 steps) ---------- */
+#auth {
+  --cardW: 150px;
+  --cardH: 170px;
+}
+
+@media (max-height: 520px) {
+  #auth {
+    --cardW: 105px;
+    --cardH: 115px;
+  }
+}
+
+#authBox {
+  width: min(92vw, 640px);
+  overflow: hidden;
+}
+
+#track {
+  display: flex;
+  transition: transform .5s ease;
+}
+
+.step {
+  flex: 0 0 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 8px;
+}
+
+.step h2 {
+  margin: 0 0 14px;
+  letter-spacing: .2em;
+  font-size: clamp(16px, 2.6vw, 24px);
+  text-align: center;
+}
+
+/* step 1: form */
+#accountForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(86vw, 340px);
+}
+
+#accountForm input {
+  padding: 14px;
+  background: #14121c;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  border: 1px solid #2c2838;
+  border-radius: 8px;
+  outline: none;
+}
+
+#accountForm input:focus {
+  border-color: var(--orange);
+}
+
+/* buttons */
+.main-btn {
+  padding: 14px 28px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--orange);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  letter-spacing: .15em;
+  cursor: pointer;
+}
+
+.main-btn:disabled {
+  background: #2c2838;
+  color: #6b6779;
+  cursor: not-allowed;
+}
+
+.back-btn {
+  margin-top: 10px;
+  background: transparent;
+  border: 0;
+  color: #9a96aa;
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: .2em;
+  cursor: pointer;
+}
+
+/* steps 2-4: card picker */
+.picker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.cards {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+  padding: 10px 6px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.cards::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  flex: 0 0 var(--cardW);
+  height: var(--cardH);
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  background: #14121c;
+  border: 2px solid #2c2838;
+  border-radius: 12px;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+
+.card-img {
+  flex: 1;
+  background: linear-gradient(160deg, #2a1a10, #4a2208);   /* placeholder: swap for your image */
+}
+
+.card-name {
+  padding: 8px 4px;
+  font-size: 11px;
+  letter-spacing: .15em;
+  text-align: center;
+}
+
+.card.selected {
+  border-color: var(--orange);
+  box-shadow: 0 0 14px rgba(255,106,0,.5);
+  transform: scale(1.04);
+}
+
+/* triangle arrows (no text) */
+.arrow {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 44px;
+  border: 0;
+  background: var(--orange);
+  cursor: pointer;
+}
+
+.arrow-left {
+  clip-path: polygon(100% 0, 100% 100%, 0 50%);
+}
+
+.arrow-right {
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.arrow:active {
+  background: #ffb43c;
+}
+
+/* step 5: summary */
+#summary {
+  margin-bottom: 14px;
+  line-height: 2;
+  font-size: 13px;
+  letter-spacing: .1em;
+  text-align: center;
+}
+
+#summary span {
+  color: var(--orange);
+}
+
+/* progress dots + bottom text */
+#dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2c2838;
+  transition: background .3s;
+}
+
+.dot.active {
+  background: var(--orange);
+}
+
+#switch {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #9a96aa;
+  cursor: pointer;
+}
+
+#switch span {
+  color: var(--orange);
+}
+
+#msg {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #9a96aa;
+  min-height: 1em;
+}
+
+/* ---------- 4. game screen (placeholder) ---------- */
+#game p {
+  letter-spacing: .2em;
+  font-size: 14px;
+  color: #9a96aa;
+}
+
+#logout {
+  margin-top: 18px;
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: .2em;
+  color: #9a96aa;
+  background: transparent;
+  border: 1px solid #2c2838;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* ---------- skip + rotate ---------- */
+#skip {
+  position: fixed;
+  right: 16px;
+  top: calc(12px + env(safe-area-inset-top, 0px));
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: .2em;
+  color: #9a96aa;
+  background: transparent;
+  border: 1px solid #2c2838;
+  border-radius: 20px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .6s;
+  z-index: 5;
+}
+
+#skip.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#rotate {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 10;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  letter-spacing: .15em;
+  font-size: 14px;
+}
+
+@media (orientation: portrait) {
+  #rotate {
+    display: flex;
+  }
+}
