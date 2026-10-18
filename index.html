@@ -55,11 +55,19 @@
         <div class="picker" id="characterPicker">
           <button class="arrow arrow-left" aria-label="previous"></button>
           <div class="cards">
-            <div class="card"><div class="card-img"></div><div class="card-name">KAEL</div></div>
-            <div class="card"><div class="card-img"></div><div class="card-name">MIRA</div></div>
-            <div class="card"><div class="card-img"></div><div class="card-name">DAX</div></div>
-            <div class="card"><div class="card-img"></div><div class="card-name">NOVA</div></div>
-            <div class="card"><div class="card-img"></div><div class="card-name">RYN</div></div>
+            <div class="card"><div class="card-img">
+              <img src="images/characters/female/kael.png" alt="">
+            </div><div class="card-name">MIRA</div></div>
+            <div class="card"><div class="card-img">
+              <img src="images/characters/female/kiaa.png" alt="">
+            </div><div class="card-name">KIAA</div></div>
+            <div class="card"><div class="card-img">
+              <img src="images/characters/male/max.png" alt="">
+            </div><div class="card-name">MAX</div></div>
+            <div class="card"><div class="card-img">
+              <img src="images/characters/male/owen.png" alt="">
+            </div><div class="card-name">OWEN</div></div>
+
           </div>
           <button class="arrow arrow-right" aria-label="next"></button>
         </div>
@@ -128,13 +136,52 @@
 
 <!-- 4. THE GAME -->
 <div class="screen" id="game">
-  <p>GAME SCREEN</p>
-  <p>Your three.js world goes here</p>
+  
   <button id="logout">LOG OUT</button>
-</div>
 
+    <!-- test page only: shows the numbers so you can see your joystick working -->
+  <div id="debug"></div>
+ 
+ 
+  <!-- =====================================================
+       COPY FROM HERE: the HUD (paste inside the game div)
+       ===================================================== -->
+  <div id="hud">
+ 
+    <!-- top right: player name, money, and the + button -->
+    <div id="stats">
+      <div id="playerName">PLAYER</div>
+      <div id="divider"></div>
+      <div id="money">₦0</div>
+      <button id="addMoneyBtn" aria-label="add money">+</button>
+    </div>
+ 
+    <!-- bottom left: joystick -->
+    <div id="joystick">
+      <div id="knob"></div>
+    </div>
+ 
+    <!-- bottom right: bag -->
+    <button id="bagBtn" aria-label="bag">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 8h12l1 12H5L6 8z"/>
+        <path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+      </svg>
+    </button>
+ 
+    </div>
+  <!-- COPY TO HERE -->
+</div>
 <button id="skip">SKIP</button>
 <div id="rotate">ROTATE YOUR PHONE<br>TO PLAY REBORN</div>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
 <script type="module" src="js/game.js"></script>
 <script src="js/main.js"></script>
 </body>
